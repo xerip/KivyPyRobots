@@ -1,8 +1,0 @@
-# Default ia
-# Get the enemy position in the game
-enemy = self.getEnemyTankId()
-enemypos = self.getPosition(enemy)
-# Move foward to the enemy
-self.moveTank(enemypos)
-#Shoot the enemy Gracefuly
-self.shoot()
