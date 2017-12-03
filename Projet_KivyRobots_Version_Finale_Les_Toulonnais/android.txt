@@ -1,0 +1,3 @@
+title = Kivyrobot Version Finale
+author = Les Toulonnais
+orientation = landscape

@@ -1,0 +1,145 @@
+#Cette page définit le layout de la page d'acceuil.
+
+<DescriptorLabel@Label>:
+    color: [0,0,0,1]
+
+
+
+#Definition de la page d'acceuil.
+<Acceuil>:
+    #Grid Layout:Division de la page en deux sous layouts.
+    GridLayout:
+        size: root.size
+        cols: 2
+        spacing: 10
+
+
+        #Layout gauche
+        BoxLayout:
+            orientation: "vertical"
+
+            StackLayout:
+                size_hint: 1, .1
+                orientation: "lr-tb"
+
+            Image:
+                source: 'img/tank.png'
+                size_hint: None, None
+                size: 400, 250
+
+            StackLayout:
+                #size_hint: 1, .01
+                orientation: "lr-tb"
+
+                DescriptorLabel:
+                    text: "Mode aggression : "
+                    size_hint: .70, .3
+
+                #Ce switch ne faisait rien dans le programme originel.
+                Switch:
+                    id:OnOff
+                    size_hint: .3, .4
+            StackLayout:
+                Button:
+                    size_hint:.5,.3
+                    text:"Charger Script:"
+                    on_release:root.Charger()
+
+                DescriptorLabel:
+                    text: app.pathscript
+                    size_hint: .3, .3
+
+
+            StackLayout:
+                Button:
+                    id:CombatButton
+                    text: "[b]COMBAT ![/b]"
+                    markup:True
+                    on_release: root.CallCombat()
+
+
+        #Layout Droite
+        GridLayout:
+            cols: 2
+            spacing: 8
+            DescriptorLabel:
+                text: "Statistiques:"
+                size_hint: .30, .70
+
+            DescriptorLabel:
+                text: "Equipement:"
+                size_hint: .10, .70
+
+
+
+            DescriptorLabel:
+                id:att
+                text: app.attaque
+                size_hint: .9, .1
+
+            Image:
+                id:imagecanon
+                source: app.attaquesource
+                size_hint: None, None
+                size: 80,50
+
+            DescriptorLabel:
+                text: app.defense
+                size_hint: .9, .1
+
+            Image:
+                id:imagedefense
+                source: app.defensesource
+                size_hint: None, None
+                size: 80,50
+
+            DescriptorLabel:
+                text: app.mouvement
+                size_hint: .9, .1
+
+            Image:
+                id:imagechen
+                source: app.mouvementsource
+                size_hint: None, None
+                size: 80,50
+
+            DescriptorLabel:
+                text: app.ptaction
+                size_hint: .9, .1
+
+            Image:
+                id:imagesys
+                source: app.systemesource
+                size_hint: None, None
+                size: 80,50
+
+
+#Fenetre (incomplete) pour charger un script different.
+<ChargerScript@PopUp>:
+    title:"Charger le Script"
+    size_hint:(.9,.9)
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+
+            Button:
+                text: "Load"
+                #fonction incomplete.
+                on_release: root.load(filechooser.selection)
+
+            Button:
+                text: "Cancel"
+                on_release: root.dismiss()
+
+#Définition de la fenetre de combat.
+<FenetreCombat@Popup>
+    title:"Fenetre de combat - Kivy Robot"
+    size_hint:.95,1.
+    pos_hint:{'x':0.,'y':0.}
