@@ -1,0 +1,238 @@
+
+
+<SelectChangingEquipementLayout@FloatLayout>:
+    FloatLayout:
+        id: zoneAll
+        size: root.size
+        SelectSystemLayout:
+            id: ProcessLayout
+            pos: root.x, root.y
+        SelectTrackLayout:
+            id: RouageLayout
+            pos: root.x, root.y
+        SelectArmorLayout:
+            id: BlindageLayout
+            pos: root.x, root.y
+        SelectCanonLayout:
+            id: CanonLayout
+            pos: root.x, root.y
+
+#On  Définit chaque sous section d'affichage séparément.
+
+
+<SelectSystemLayout>:
+    FloatLayout:
+        id: RouageLayout
+        size: root.size
+        AnchorLayout:
+            StackLayout:
+                orientation: "lr-tb"
+
+                Button:
+                    id: Process1
+                    size_hint: .3, .3
+                    background_normal: 'img/system1.png'
+                    on_release: root.infoEq("Systeme #1","Pt d'Actions :    20","Prix:    20",1)
+                    disabled: True
+
+                Button:
+                    id: Process2
+                    size_hint: .3, .3
+                    background_normal: 'img/system2.png'
+                    on_release: root.infoEq("Systeme #2","Pt d'Actions :    40","Prix:    40",2)
+                    disabled: True
+
+                Button:
+                    id: Process3
+                    size_hint: .3, .3
+                    background_normal: 'img/system3.png'
+                    on_release: root.infoEq("Systeme #3","Pt d'Actions :    80","Prix:    80",3)
+                    disabled: True
+
+<SelectTrackLayout>:
+    FloatLayout:
+        id: ChenilleLayout
+        size: root.size
+        AnchorLayout:
+            StackLayout:
+                orientation: "lr-tb"
+
+                Button:
+                    id: Rouage1
+                    size_hint: .3, .3
+                    background_normal: 'img/chenilles1.png'
+                    on_release: root.infoEq("Chenille #1","Vitesse :    20","Prix:    20",1)
+                    disabled: True
+
+                Button:
+                    id: Rouage2
+                    size_hint: .3, .3
+                    background_normal: 'img/chenilles2.png'
+                    on_release: root.infoEq("Chenille #2","Vitesse :    40","Prix:    40",2)
+                    disabled: True
+
+                Button:
+                    id: Rouage3
+                    size_hint: .3, .3
+                    background_normal: 'img/chenilles3.png'
+                    on_release: root.infoEq("Chenille #3","Vitesse :    80","Prix:    80",3)
+                    disabled: True
+
+<SelectArmorLayout>:
+    FloatLayout:
+        id: BlindageLayout
+        size: root.size
+        AnchorLayout:
+            StackLayout:
+                orientation: "lr-tb"
+
+                Button:
+                    id: Blindage1
+                    size_hint: .3, .3
+                    background_normal: 'img/armor1.png'
+                    on_release: root.infoEq("Armure #1","Défense :    20","Prix:    20",1)
+                    disabled: True
+
+                Button:
+                    id: Blindage2
+                    size_hint: .3, .3
+                    background_normal: 'img/armor2.png'
+                    on_release: root.infoEq("Armure #2","Défense :    40","Prix:    40",2)
+                    disabled: True
+
+                Button:
+                    id: Blindage3
+                    size_hint: .3, .3
+                    background_normal: 'img/armor3.png'
+                    on_release: root.infoEq("Armure #3","Défense :    80","Prix:    80",3)
+                    disabled: True
+
+
+<SelectCanonLayout>:
+    FloatLayout:
+        id: CanonLayout
+        size: root.size
+        AnchorLayout:
+            StackLayout:
+                orientation: "lr-tb"
+
+                Button:
+                    id: Canon1
+                    size_hint: .3, .3
+                    background_normal: 'img/cannon1.png'
+                    on_release: root.infoEq("Canon #1","Attaque :    20","Prix:    20",1)
+                    disabled: True
+
+                Button:
+                    id: Canon2
+                    size_hint: .3, .3
+                    background_normal: 'img/cannon2.png'
+                    on_release: root.infoEq("Canon #2","Attaque :    40","Prix:    40",2)
+                    disabled: True
+
+                Button:
+                    id: Canon3
+                    size_hint: .3, .3
+                    background_normal: 'img/cannon3.png'
+                    on_release: root.infoEq("Canon #3","Attaque :    80","Prix:    80",3)
+                    disabled: True
+
+<SelectEquipementButton@Button>:
+    id: EqButton
+    background_normal: 'img/selctEq_normal.png'
+    color: [.9,.3,.3,1]
+    #fond écran pour bouton choissit, doit être fait via une fonction callback
+
+<DescriptorLabel@Label>:
+    color: [0,0,0,1]
+
+<Inventaire>:
+    GridLayout:
+        size: root.size
+        cols: 2
+        #rows: 2
+        spacing: 10
+
+        BoxLayout:
+            orientation: "vertical"
+
+            StackLayout:
+                size_hint: 1, .1
+                orientation: "lr-tb"
+
+                SelectEquipementButton:
+                    id: CanonButton
+                    text: "Canons"
+                    size_hint: .24, 1
+                    background_normal: 'img/selctEq.png'
+                    on_release: root.ButtonPress('CanonButton')
+
+                SelectEquipementButton:
+                    id: BlindageButton
+                    text: "Blindages"
+                    size_hint: .24, 1
+                    on_release: root.ButtonPress('BlindageButton')
+
+                SelectEquipementButton:
+                    id: ChenilleButton
+                    text: "Chenilles"
+                    size_hint: .24, 1
+                    on_release: root.ButtonPress('ChenilleButton')
+
+                SelectEquipementButton:
+                    id: SystemesButton
+                    text: "Systèmes"
+                    size_hint: .24, 1
+                    on_release: root.ButtonPress('SystemesButton')
+
+            SelectChangingEquipementLayout:
+                id: ChangingEquipementLayout
+                pos: 0,0
+
+        AnchorLayout:
+            AnchorLayout:
+                anchor_x: "right"
+                anchor_y: "center"
+                size_hint: .24, .8
+
+                BoxLayout:
+                    #size_hint: 1, .2
+                    orientation: "vertical"
+
+                    Image:
+                        source: app.imgEq
+                        size_hint: None, None
+                        size: 170, 112
+
+                    DescriptorLabel:
+                        text: app.nomEq
+                        size_hint: .24, .33
+
+                    DescriptorLabel:
+                        text: "Statistiques"
+                        size_hint: .2, .33
+                        bold: True
+
+                    StackLayout:
+                        orientation: "lr-tb"
+                        size_hint: 2, .1
+
+
+                        DescriptorLabel:
+                            size_hint: .24, .33
+                            text: app.valEq
+
+                    StackLayout:
+                        orientation: "lr-tb"
+                        size_hint: 2, .1
+
+                        DescriptorLabel:
+                            size_hint: .04, .33
+                            text: app.prixEq
+
+
+                    Button:
+                        text: "Équiper"
+                        size_hint: 1, .14
+                        pos: -10, -10
+                        on_release: root.Equiper()
